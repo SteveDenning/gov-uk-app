@@ -1,6 +1,6 @@
 import "./styles/default.scss";
 
-import Header from "./vuews/header";
+import Header from "./views/header";
 
 function App() {
   return (
