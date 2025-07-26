@@ -3,92 +3,26 @@ import "./styles/default.scss";
 import Header from "./views/header";
 
 import "./App.scss";
+import Accordion from "./components/accordion";
 
 function App() {
+  const testItems = [
+    { name: "Item 1", title: "Title 1", overview: "Overview 1", episode_count: "3" },
+    { name: "Item 2", title: "Title 2", overview: "Overview 2", episode_count: "5" },
+    { name: "Item 3", title: "Title 3", overview: "Overview 3", episode_count: "0" },
+    { name: "Item 4", title: "Title 4", overview: "Overview 4", episode_count: "2" },
+    { name: "Item 5", title: "Title 5", overview: "Overview 5", episode_count: "1" },
+  ];
   return (
     <>
       <Header title="Ministry of Defence" />
       <div className="container">
         <title>Ministry of Defence</title>
 
-        <div
-          className="govuk-accordion"
-          data-module="govuk-accordion"
-          id="accordion-default"
-        >
-          <div className="govuk-accordion__section">
-            <div className="govuk-accordion__section-header">
-              <h2 className="govuk-accordion__section-heading">
-                <span
-                  className="govuk-accordion__section-button"
-                  id="accordion-default-heading-1"
-                >
-                  Writing well for the web
-                </span>
-              </h2>
-            </div>
-            <div
-              id="accordion-default-content-1"
-              className="govuk-accordion__section-content"
-            >
-              <p className="govuk-body">This is the content for Writing well for the web.</p>
-            </div>
-          </div>
-          <div className="govuk-accordion__section">
-            <div className="govuk-accordion__section-header">
-              <h2 className="govuk-accordion__section-heading">
-                <span
-                  className="govuk-accordion__section-button"
-                  id="accordion-default-heading-2"
-                >
-                  Writing well for specialists
-                </span>
-              </h2>
-            </div>
-            <div
-              id="accordion-default-content-2"
-              className="govuk-accordion__section-content"
-            >
-              <p className="govuk-body">This is the content for Writing well for specialists.</p>
-            </div>
-          </div>
-          <div className="govuk-accordion__section">
-            <div className="govuk-accordion__section-header">
-              <h2 className="govuk-accordion__section-heading">
-                <span
-                  className="govuk-accordion__section-button"
-                  id="accordion-default-heading-3"
-                >
-                  Know your audience
-                </span>
-              </h2>
-            </div>
-            <div
-              id="accordion-default-content-3"
-              className="govuk-accordion__section-content"
-            >
-              <p className="govuk-body">This is the content for Know your audience.</p>
-            </div>
-          </div>
-          <div className="govuk-accordion__section">
-            <div className="govuk-accordion__section-header">
-              <h2 className="govuk-accordion__section-heading">
-                <span
-                  className="govuk-accordion__section-button"
-                  id="accordion-default-heading-4"
-                >
-                  How people read
-                </span>
-              </h2>
-            </div>
-            <div
-              id="accordion-default-content-4"
-              className="govuk-accordion__section-content"
-            >
-              <p className="govuk-body">This is the content for How people read.</p>
-            </div>
-          </div>
-        </div>
+        <Accordion
+          items={testItems}
+          label="Test Accordion"
+        />
         <div className="govuk-form-group">
           <fieldset
             className="govuk-fieldset"

@@ -2,6 +2,8 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "types": ["vitest/globals"],
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "target": "es2020",
+    "lib": ["dom", "dom.iterable", "es2020"]
   }
 }
