@@ -1,8 +1,13 @@
 import "./styles/default.scss";
 
+import Header from "./vuews/header";
+
 function App() {
   return (
     <>
+      <title>Ministry of Defence</title>
+
+      <Header title="Ministry of Defence" />
       <div
         className="govuk-accordion"
         data-module="govuk-accordion"
