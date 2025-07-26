@@ -27,6 +27,7 @@ const Header = ({ title = "Ministry of Defence" }: Props) => {
               data-testid="govuk-header__logotype"
             >
               {icons.logo}
+              <span className="sr-only">Ministry of Defence Logo</span>
             </span>
           </a>
         </div>
