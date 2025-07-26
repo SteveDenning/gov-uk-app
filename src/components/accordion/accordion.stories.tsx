@@ -1,8 +1,6 @@
-import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 
 // Layouts
-import StorybookLayout from "../../layout/storybook";
 
 // Components
 import Template from "./index";
@@ -25,27 +23,13 @@ const meta: Meta<typeof Template> = {
       type: { name: "string", required: true },
       description: "Unique identifier to set item keys",
     },
-    reversed: {
-      control: "boolean",
-      type: { name: "boolean", required: false },
-      description: "Reverses the display of the toggle arrow",
-    },
-    hasImage: {
-      control: "boolean",
-      type: { name: "boolean", required: false },
-      description: "Determine if the accordion item has an image",
-    },
   },
 };
 export default meta;
 
 type Story = StoryObj<typeof Template>;
 
-const Accordion = (args: any) => (
-  <StorybookLayout>
-    <Template {...args} />
-  </StorybookLayout>
-);
+const Accordion = (args: any) => <Template {...args} />;
 
 export const Default: Story = {
   render: (args) => <Accordion {...args} />,
