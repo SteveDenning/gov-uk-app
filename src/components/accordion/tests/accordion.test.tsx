@@ -53,6 +53,8 @@ describe("Accordion Component", () => {
     it("Should expand all items when clicking 'Show all sections'", async () => {
       fireEvent.click(screen.getByTestId("govuk-accordion-show-all"));
       const expandedSections = screen.getAllByTestId("govuk-accordion-section");
+
+      await waitFor(() => expect(screen.getByText("Hide all sections")).toBeInTheDocument());
       expandedSections.forEach((section) => {
         expect(section).toHaveClass("govuk-accordion__section--expanded");
       });

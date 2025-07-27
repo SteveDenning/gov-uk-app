@@ -12,10 +12,9 @@ interface Props {
 
 const Accordion = ({ label, items }: Props) => {
   const [openItems, setOpenItems] = useState<number[]>([]);
+
   const allExpanded = openItems.length === items.length;
 
-  // Create a function toggle
-  //  open all items
   const toggleOpenItems = () => {
     if (openItems.length === items.length) {
       setOpenItems([]);
@@ -47,7 +46,7 @@ const Accordion = ({ label, items }: Props) => {
           onClick={toggleOpenItems}
           data-testid="govuk-accordion-show-all"
         >
-          <span className="govuk-accordion-nav__chevron"></span>
+          <span className={`govuk-accordion-nav__chevron govuk-accordion-nav__chevron--${allExpanded ? "up" : "down"}`}></span>
           <span className="govuk-accordion__show-all-text">{allExpanded ? "Hide" : "Show"} all sections</span>
         </button>
       </div>
@@ -83,10 +82,10 @@ const Accordion = ({ label, items }: Props) => {
                   <span className="govuk-accordion__section-toggle">
                     <span className="govuk-accordion__section-toggle-focus">
                       <span
-                        className="govuk-accordion-nav__chevron"
+                        className={`govuk-accordion-nav__chevron govuk-accordion-nav__chevron--${isOpen ? "up" : "down"}`}
                         data-testid="govuk-accordion-icon"
                       ></span>
-                      <span className="govuk-accordion__section-toggle-text">Hide</span>
+                      <span className="govuk-accordion__section-toggle-text">{isOpen ? "Hide" : "Show"}</span>
                     </span>
                   </span>
                 </button>
