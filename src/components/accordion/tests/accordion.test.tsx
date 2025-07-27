@@ -1,6 +1,6 @@
-import React from "react";
 import "@testing-library/jest-dom";
-import { screen, render, fireEvent } from "@testing-library/react";
+import { describe, it, expect } from "vitest";
+import { screen, render, fireEvent, waitFor } from "@testing-library/react";
 
 // Components
 import Accordion from "../index";
@@ -13,7 +13,15 @@ describe("Accordion Component", () => {
           label="Lorem ipsum"
           items={[
             {
-              name: "Lorem ipsum",
+              title: "Lorem ipsum",
+              overview: "This is some toggle content",
+            },
+            {
+              title: "Lorem ipsum",
+              overview: "This is some toggle content",
+            },
+            {
+              title: "Lorem ipsum",
               overview: "This is some toggle content",
             },
           ]}
@@ -22,46 +30,32 @@ describe("Accordion Component", () => {
     });
 
     it("Should render the accordion", () => {
-      expect(screen.getByTestId("accordion")).toBeInTheDocument();
+      expect(screen.getByTestId("govuk-accordion")).toBeInTheDocument();
+      expect(screen.queryAllByTestId("govuk-accordion-title")).toHaveLength(3);
     });
 
     it("Should render all accordion elements", () => {
-      expect(screen.getByTestId("accordion-item")).toBeInTheDocument();
-      expect(screen.getByTestId("accordion-trigger")).toBeInTheDocument();
-      expect(screen.getByTestId("accordion-title")).toBeInTheDocument();
-      expect(screen.getByTestId("accordion-icon")).toBeInTheDocument();
+      expect(screen.queryAllByTestId("govuk-accordion-section-button")[0]).toBeInTheDocument();
+      expect(screen.queryAllByTestId("govuk-accordion-section")[0]).toBeInTheDocument();
+      expect(screen.queryAllByTestId("govuk-accordion-icon")[0]).toBeInTheDocument();
+      expect(screen.queryAllByTestId("govuk-accordion-title")[0]).toBeInTheDocument();
     });
 
     it("Should render all items closed by default", () => {
-      expect(screen.getByTestId("accordion-trigger")).not.toHaveClass("accordion__trigger--open");
-      expect(screen.getByTestId("accordion-inner")).not.toHaveClass("accordion__inner--open");
+      expect(screen.queryAllByTestId("govuk-accordion-section-button")[0]).not.toHaveClass("govuk-accordion__section--expanded");
     });
 
     it("Should open item when clicking toggle", async () => {
-      fireEvent.click(screen.getByTestId("accordion-trigger"));
-      expect(screen.getByTestId("accordion-trigger")).toHaveClass("accordion__trigger--open");
-      expect(screen.getByTestId("accordion-inner")).toHaveClass("accordion__inner--open");
-    });
-  });
-
-  describe("Alternative states", () => {
-    beforeEach(() => {
-      render(
-        <Accordion
-          label="Lorem ipsum"
-          reversed
-          items={[
-            {
-              name: "Lorem ipsum",
-              overview: "This is some toggle content ",
-            },
-          ]}
-        />,
-      );
+      fireEvent.click(screen.queryAllByTestId("govuk-accordion-section-button")[0]);
+      await waitFor(() => expect(screen.queryAllByTestId("govuk-accordion-section")[0]).toHaveClass("govuk-accordion__section--expanded"));
     });
 
-    it("Should not apply variant classes", () => {
-      expect(screen.getByTestId("accordion-trigger")).toHaveClass("accordion__trigger--reversed");
+    it("Should expand all items when clicking 'Show all sections'", async () => {
+      fireEvent.click(screen.getByTestId("govuk-accordion-show-all"));
+      const expandedSections = screen.getAllByTestId("govuk-accordion-section");
+      expandedSections.forEach((section) => {
+        expect(section).toHaveClass("govuk-accordion__section--expanded");
+      });
     });
   });
 });
