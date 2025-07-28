@@ -4,6 +4,8 @@ import Header from "./views/header";
 
 import "./App.scss";
 import Accordion from "./components/accordion";
+import Checkbox from "./components/checkbox";
+import { useState } from "react";
 
 function App() {
   const testItems = [
@@ -13,6 +15,7 @@ function App() {
     { name: "Item 4", title: "Title 4", overview: "Overview 4", episode_count: "2" },
     { name: "Item 5", title: "Title 5", overview: "Overview 5", episode_count: "1" },
   ];
+  const [isChecked, setIsChecked] = useState(false);
   return (
     <>
       <Header title="Ministry of Defence" />
@@ -23,72 +26,14 @@ function App() {
           items={testItems}
           label="Test Accordion"
         />
-        <div className="govuk-form-group">
-          <fieldset
-            className="govuk-fieldset"
-            aria-describedby="waste-hint"
-          >
-            <legend className="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 className="govuk-fieldset__heading">Which types of waste do you transport?</h1>
-            </legend>
-            <div
-              id="waste-hint"
-              className="govuk-hint"
-            >
-              Select all that apply
-            </div>
-            <div
-              className="govuk-checkboxes"
-              data-module="govuk-checkboxes"
-            >
-              <div className="govuk-checkboxes__item">
-                <input
-                  className="govuk-checkboxes__input"
-                  id="waste"
-                  name="waste"
-                  type="checkbox"
-                  value="carcasses"
-                />
-                <label
-                  className="govuk-label govuk-checkboxes__label"
-                  htmlFor="waste"
-                >
-                  Waste from animal carcasses
-                </label>
-              </div>
-              <div className="govuk-checkboxes__item">
-                <input
-                  className="govuk-checkboxes__input"
-                  id="waste-2"
-                  name="waste"
-                  type="checkbox"
-                  value="mines"
-                />
-                <label
-                  className="govuk-label govuk-checkboxes__label"
-                  htmlFor="waste-2"
-                >
-                  Waste from mines or quarries
-                </label>
-              </div>
-              <div className="govuk-checkboxes__item">
-                <input
-                  className="govuk-checkboxes__input"
-                  id="waste-3"
-                  name="waste"
-                  type="checkbox"
-                  value="farm"
-                />
-                <label
-                  className="govuk-label govuk-checkboxes__label"
-                  htmlFor="waste-3"
-                >
-                  Farm or agricultural waste
-                </label>
-              </div>
-            </div>
-          </fieldset>
-        </div>
+        <Checkbox
+          id="waste"
+          name="waste"
+          label="Waste from animal carcasses"
+          onChange={() => setIsChecked(!isChecked)}
+          checked={isChecked}
+          required
+        />
       </div>
     </>
   );
