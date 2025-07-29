@@ -36,7 +36,7 @@ function App() {
           required
         />
       </div>
-      <Footer title="Ministry of Defence" />
+      <Footer />
     </>
   );
 }
