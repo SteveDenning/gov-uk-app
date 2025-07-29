@@ -6,6 +6,7 @@ import "./App.scss";
 import Accordion from "./components/accordion";
 import Checkbox from "./components/checkbox";
 import { useState } from "react";
+import Footer from "./views/footer";
 
 function App() {
   const testItems = [
@@ -35,6 +36,7 @@ function App() {
           required
         />
       </div>
+      <Footer title="Ministry of Defence" />
     </>
   );
 }
