@@ -16,6 +16,29 @@ function App() {
     { name: "Item 4", title: "Title 4", overview: "Overview 4", episode_count: "2" },
     { name: "Item 5", title: "Title 5", overview: "Overview 5", episode_count: "1" },
   ];
+
+  const mockUsers = [
+    { id: 1, name: "Alice Johnson", email: "alice.johnson@example.com" },
+    { id: 2, name: "Bob Smith", email: "bob.smith@example.com" },
+    { id: 3, name: "Charlie Nguyen", email: "charlie.nguyen@example.com" },
+    { id: 4, name: "Diana Patel", email: "diana.patel@example.com" },
+    { id: 5, name: "Ethan Wright", email: "ethan.wright@example.com" },
+    { id: 6, name: "Fiona Chen", email: "fiona.chen@example.com" },
+    { id: 7, name: "George Kim", email: "george.kim@example.com" },
+    { id: 8, name: "Hannah Lee", email: "hannah.lee@example.com" },
+    { id: 9, name: "Ian Thompson", email: "ian.thompson@example.com" },
+    { id: 11, name: "Julia Martinez", email: "julia.martinez@example.com" },
+    { id: 12, name: "Julia Martinez", email: "julia.martinez@example.com" },
+    { id: 13, name: "Julia Martinez", email: "julia.martinez@example.com" },
+  ];
+
+  // write a function to filter on the array of objects when we pass in only part of the email address
+  const filterByEmail = (emailPart: string) => {
+    return mockUsers.filter((user) => user.email.toLowerCase().includes(emailPart.toLowerCase()));
+  };
+
+  console.log(filterByEmail("julia")); // Should return all users
+
   const [isChecked, setIsChecked] = useState(false);
   return (
     <>
