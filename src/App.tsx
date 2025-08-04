@@ -5,10 +5,14 @@ import Header from "./views/header";
 import "./App.scss";
 import Accordion from "./components/accordion";
 import Checkbox from "./components/checkbox";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Footer from "./views/footer";
 
 function App() {
+  const [user, setUser] = useState({
+    name: "",
+    email: "j",
+  });
   const testItems = [
     { name: "Item 1", title: "Title 1", overview: "Overview 1", episode_count: "3" },
     { name: "Item 2", title: "Title 2", overview: "Overview 2", episode_count: "5" },
@@ -28,17 +32,23 @@ function App() {
     { id: 8, name: "Hannah Lee", email: "hannah.lee@example.com" },
     { id: 9, name: "Ian Thompson", email: "ian.thompson@example.com" },
     { id: 11, name: "Julia Martinez", email: "julia.martinez@example.com" },
-    { id: 12, name: "Julia Martinez", email: "julia.martinez@example.com" },
-    { id: 13, name: "Julia Martinez", email: "julia.martinez@example.com" },
   ];
+
+  useEffect(() => {
+    // Example usage of filter functions
+    console.log(filterByNameOrEmail("Alice Johnson")); // Should return all users with 'julia' in their name or email
+  }, []);
 
   // write a function to filter on the array of objects when we pass in only part of the email address
   const filterByEmail = (emailPart: string) => {
     return mockUsers.filter((user) => user.email.toLowerCase().includes(emailPart.toLowerCase()));
   };
-
-  console.log(filterByEmail("julia")); // Should return all users
-
+  // write a function to filter on the array of objects when we pass in only part of the email address ro teh name field
+  const filterByNameOrEmail = (searchTerm: string) => {
+    return mockUsers.filter(
+      (user) => user.email.toLowerCase().includes(searchTerm.toLowerCase()) || user.name.toLowerCase().includes(searchTerm.toLowerCase()),
+    );
+  };
   const [isChecked, setIsChecked] = useState(false);
   return (
     <>
