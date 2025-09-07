@@ -1,0 +1,9 @@
+.govuk-header {
+  &__content {
+    display: flex;
+    vertical-align: middle;
+  }
+  &__content-header {
+    margin: 0;
+  }
+}
